@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %} <!-- New line -->
+<html>
+    
+      <head>
+        <title>Polls index page</title>
+      </head>
+      <body>
+        <h1> Saying </h1>
+        hello world to All ! <strong> {{ boldmessage}}</strong> <br/>
+        <a href = '/polls/about'> About </a> <br/>
+        <img src="{% static "images/Polling.gif" %}" alt = "Polling Picture"/> 
+      </body>
+</html>
+
