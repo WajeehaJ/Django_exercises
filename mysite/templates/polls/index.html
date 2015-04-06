@@ -7,7 +7,17 @@
       </head>
       <body>
         <h1> Saying </h1>
-        hello world to All ! <strong> {{ boldmessage}}</strong> <br/>
+        hello world to All !  
+        {% if Questions %}
+            <ul>
+              {% for q in Questions %}
+               <li> {{q.question_text}}</li>
+              {% endfor %}
+            </ul>
+         {% else %}
+           <strong> There are no questions present.</strong>
+          {% endif %}   
+         <br/>
         <a href = '/polls/about'> About </a> <br/>
         <img src="{% static "images/Polling.gif" %}" alt = "Polling Picture"/> 
       </body>
