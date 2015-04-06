@@ -5,7 +5,14 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+class Category(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+
+    def __unicode__(self):  #For Python 2, use __str__ on Python 3
+        return self.name
+
 class Question(models.Model):
+    category = models.ForeignKey(Category)
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     likes = models.IntegerField(default = 0)

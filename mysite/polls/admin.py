@@ -1,5 +1,5 @@
 from django.contrib import admin
-from polls.models import Question, Choice
+from polls.models import Question, Choice, Category
 st_display = ('question_text', 'pub_date', 'was_published_recently')
 class ChoiceInline(admin.TabularInline): #admin.StackedInline):
     model = Choice
@@ -12,7 +12,7 @@ class QuestionAdmin(admin.ModelAdmin):
         ('Date information', { 'fields': ['pub_date']}),
     ]
     inlines = [ChoiceInline]
-    list_display = ('question_text', 'pub_date', 'was_published_recently')
+    list_display = ('question_text','category', 'pub_date', 'was_published_recently')
     list_filter = ['pub_date'] 
 # Register your models here.
 admin.site.register(Question, QuestionAdmin)
