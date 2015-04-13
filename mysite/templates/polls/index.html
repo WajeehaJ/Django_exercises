@@ -7,17 +7,21 @@
       </head>
       <body>
         <h1> Saying </h1>
-        hello world to All !  
-        {% if Questions %}
+        hello world to All ! 
+
+        {% if categories %}
             <ul>
-              {% for q in Questions %}
-               <li> {{q.question_text}}</li>
-              {% endfor %}
+                {% for category in categories %}
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li><a href="/polls/category/{{ category.slug }}">{{ category.name }}</a></li>
+                {% endfor %}
             </ul>
-         {% else %}
-           <strong> There are no questions present.</strong>
-          {% endif %}   
+       {% else %}
+            <strong>There are no categories present.</strong>
+       {% endif %}
+         
          <br/>
+         <a href="{% url 'add_category'%}" >Add New Category</a> 
         <a href = '/polls/about'> About </a> <br/>
         <img src="{% static "images/Polling.gif" %}" alt = "Polling Picture"/> 
       </body>

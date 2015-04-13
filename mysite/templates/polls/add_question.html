@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %} <!-- New line -->
+<html>
+    <head>
+        <title>Polls</title>
+         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+         <script type="text/javascript" src="{% static "datetime_picker/jquery.timepicker.js" %}"></script>
+         <script type="text/javascript" src="{% static "datetime_picker/jquery.timepicker.min.js" %}"></script>
+         <link rel="stylesheet" type="text/css" href="{% static "datetime_picker/jquery.timepicker.css" %}">
+         <script type="text/javascript" src="{% static "datetime_picker/lib/site.js" %}"></script>
+         <link rel="stylesheet" type="text/css" href="{% static "datetime_picker/lib/site.css"  %}">
+         <link rel="stylesheet" type="text/css" href= "{% static "datetime_picker/lib/bootstrap-datepicker.css"  %}">
+         <script type="text/javascript" src="{% static "datetime_picker/lib/bootstrap-datepicker.js" %}"></script>
+     <script type="text/javascript" >
+    $(function() {
+        $( "#id_pub_date_1" ).timepicker({
+            'timeFormat': 'H:i:s',
+            'scrollDefault': 'now'       
+         });
+         $( "#id_pub_date_0" ).datepicker({
+             'format': 'yyyy-mm-dd',
+             'autoclose': true
+         });
+
+    });
+    </script>
+   </head>
+    <body>
+        <h1>Add Questions</h1>
+        <form id = "question_form" method="post" action="/polls/category/{{category.slug}}/add_question/">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}            
+            {{field.help_text}}
+            {{ field }}
+        {% endfor %}
+        <input type="submit" name="submit" value="create Question"/> 
+        </form>
+    </body>
+
+</html>

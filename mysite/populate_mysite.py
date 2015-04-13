@@ -33,6 +33,7 @@ def add_question(cat, quest_txt, date, likes = 0):
 
 def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
+    c.save()
     return c
 
 #Start execution here!

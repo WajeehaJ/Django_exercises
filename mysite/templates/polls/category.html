@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Polls Category View</title>
+    </head>
+
+    <body>
+        <h1>{{ category_name }}</h1>
+        {% if category %}
+            {% if questions %}
+            <ul>
+                {% for q in questions %}
+                <li>{{ q.question_text }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No questions currently in category.</strong>
+            {% endif %}
+         <a href="{% url 'add_question' category.slug %}" >Add New Question</a>
+        {% else %}
+            The specified category {{ category_name }} does not exist!
+        {% endif %}
+        <a href="{% url 'index' %}">Back to Home</a>
+    </body>
+</html>
