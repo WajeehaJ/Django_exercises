@@ -1,5 +1,6 @@
 from django import forms
-from polls.models import Category, Question, Choice 
+from django.contrib.auth.models import User
+from polls.models import Category, Question, Choice, UserProfile 
 from django.forms.widgets import SplitDateTimeWidget
 
 class QuestionForm(forms.ModelForm):
@@ -22,4 +23,17 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Category
-        fields = ('name',)   
+        fields = ('name',)
+
+class UserForm (forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
+
+  

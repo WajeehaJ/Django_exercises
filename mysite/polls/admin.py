@@ -1,5 +1,6 @@
 from django.contrib import admin
 from polls.models import Question, Choice, Category
+from polls.models import UserProfile
 
 class ChoiceInline(admin.TabularInline): #admin.StackedInline):
     model = Choice
@@ -22,3 +23,4 @@ class CategoryAdmin(admin.ModelAdmin):
 #admin.site.register(Question, QuestionAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Question)
+admin.site.register(UserProfile)

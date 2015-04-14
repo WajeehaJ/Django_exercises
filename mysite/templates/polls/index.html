@@ -6,9 +6,11 @@
         <title>Polls index page</title>
       </head>
       <body>
-        <h1> Saying </h1>
-        hello world to All ! 
-
+        {% if user.is_authenticated %}
+         <h1>My site  says... hello {{ user.username }}!</h1>
+        {% else %}
+        <h1>My site says... hello world!</h1>
+        {% endif %}
         {% if categories %}
             <ul>
                 {% for category in categories %}
@@ -21,8 +23,11 @@
        {% endif %}
          
          <br/>
-         <a href="{% url 'add_category'%}" >Add New Category</a> 
-        <a href = '/polls/about'> About </a> <br/>
+         <a href="{% url 'add_category'%}" >Add New Category</a> <br/>
+         <a href = '/polls/about'> About </a> <br/>
+         <a href = "/polls/register/">Register Here</a> <br/>
+         <a href="/polls/login/">Login</a> <br/> 
+         <p> You have visited our website {{visits}} times</p>
         <img src="{% static "images/Polling.gif" %}" alt = "Polling Picture"/> 
       </body>
 </html>
